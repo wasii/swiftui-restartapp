@@ -32,20 +32,35 @@ struct HomeView: View {
                 .padding()
             //MARK: - FOOTER
             Spacer()
-            Button(action: {
-                withAnimation(Animation.easeOut(duration: 0.4)) {
-                    isOnboardingViewActive = true // changing value of userdefaults
-                }
-            }) {
-                Image(systemName: "arrow.triangle.2.circlepath.circle.fill")
-                    .imageScale(.large)
-                Text("Restart")
-                    .font(.system(.title3, design: .rounded))
-                    .fontWeight(.bold)
-            }// - BUTTON
-            .buttonStyle(.borderedProminent)
-            .buttonBorderShape(.capsule)
-            .controlSize(.large)
+            if #available(iOS 15.0, *) {
+                Button(action: {
+                    withAnimation(Animation.easeOut(duration: 0.4)) {
+                        isOnboardingViewActive = true // changing value of userdefaults
+                    }
+                }) {
+                    Image(systemName: "arrow.triangle.2.circlepath.circle.fill")
+                        .imageScale(.large)
+                    Text("Restart")
+                        .font(.system(.title3, design: .rounded))
+                        .fontWeight(.bold)
+                }// - BUTTON
+                .buttonStyle(.borderedProminent)
+                .buttonBorderShape(.capsule)
+                .controlSize(.large)
+            } else {
+                // Fallback on earlier versions
+                Button(action: {
+                    withAnimation(Animation.easeOut(duration: 0.4)) {
+                        isOnboardingViewActive = true // changing value of userdefaults
+                    }
+                }) {
+                    Image(systemName: "arrow.triangle.2.circlepath.circle.fill")
+                        .imageScale(.large)
+                    Text("Restart")
+                        .font(.system(.title3, design: .rounded))
+                        .fontWeight(.bold)
+                }//
+            }
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
