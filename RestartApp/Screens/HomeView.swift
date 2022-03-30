@@ -35,6 +35,7 @@ struct HomeView: View {
             if #available(iOS 15.0, *) {
                 Button(action: {
                     withAnimation(Animation.easeOut(duration: 0.4)) {
+                        playSound(sound: "success", type: "m4a")
                         isOnboardingViewActive = true // changing value of userdefaults
                     }
                 }) {
@@ -51,6 +52,7 @@ struct HomeView: View {
                 // Fallback on earlier versions
                 Button(action: {
                     withAnimation(Animation.easeOut(duration: 0.4)) {
+                        playSound(sound: "success", type: "m4a")
                         isOnboardingViewActive = true // changing value of userdefaults
                     }
                 }) {
